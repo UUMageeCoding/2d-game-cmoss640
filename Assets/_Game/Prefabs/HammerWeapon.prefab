@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5374541558889794301}
   - component: {fileID: 3893013667388172488}
   - component: {fileID: 4054423771596886002}
+  - component: {fileID: 8577312521590204457}
   m_Layer: 0
   m_Name: HammerWeapon
   m_TagString: Untagged
@@ -308,6 +309,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8577312521590204457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920213471865592079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e2f131263d3394d844d6dd99236956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destruction: {fileID: 2650996757252910928, guid: ba87c181cce63de42819703c281a75e3, type: 3}
 --- !u!1 &8947754178924811208
 GameObject:
   m_ObjectHideFlags: 0
