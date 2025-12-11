@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Storm
+  - Weapon
+  - Destructible
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GunController : MonoBehaviour
@@ -5,18 +6,34 @@ public class GunController : MonoBehaviour
     public GameObject bulletPrefab; // Reference to the bullet prefab
     public Transform firePoint;   // Reference to the fire point
     public float bulletSpeed = 20f; // Speed of the bullet
+    [SerializeField] GameObject AimIndicator;
+    [SerializeField] TextMeshProUGUI HammerCountUI;
+    private int HammerCount = 30;
 
     void Update()
     {
-        AimGun();
-
-        if (Input.GetButtonDown("Fire1")) // Fire when left mouse button is clicked
+        if (Input.GetMouseButton(1))
         {
-            Shoot();
+            Aim();
+            AimIndicator.SetActive(true);
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            AimIndicator.SetActive(false);
+        }
+
+        if (Input.GetMouseButtonDown(0) && Input.GetMouseButton(1)) // Throw weapon
+        {
+            if  (HammerCount >= 1)
+            {
+                Shoot();
+                HammerCount -= 1;
+                HammerCountUI.text = "x" + HammerCount.ToString();
+            }
         }
     }
 
-    void AimGun()
+    void Aim()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0; // Ignore the Z-axis
@@ -42,5 +59,7 @@ public class GunController : MonoBehaviour
 
         // Set bullet velocity in the direction of the mouse position
         rb.linearVelocity = shootDirection * bulletSpeed;
+
+        
     }
 }

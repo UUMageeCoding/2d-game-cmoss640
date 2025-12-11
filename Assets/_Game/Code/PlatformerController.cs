@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlatformerController : MonoBehaviour
@@ -10,14 +11,22 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private TextMeshProUGUI DamageValue;
     
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveInput;
+    public Timer StormTimer;
+    private Animator animator;
+    private Animator animatorBird;
+    [SerializeField] private GameObject JumpBird;
+    public static int Score = 0;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        animatorBird = JumpBird.GetComponent<Animator>();
         
         // Set to Dynamic with gravity
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -29,15 +38,25 @@ public class PlatformerController : MonoBehaviour
     {
         // Get horizontal input
         moveInput = Input.GetAxisRaw("Horizontal");
-        
+
         // Check if grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        
+        if (isGrounded)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", true);
+        }
+
         // Jump input
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+
+        DamageValue.text = "$" + Score.ToString();
     }
     
     void FixedUpdate()
@@ -45,7 +64,7 @@ public class PlatformerController : MonoBehaviour
         // Apply horizontal movement
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
-    
+
     // Visualise ground check in editor
     void OnDrawGizmosSelected()
     {
