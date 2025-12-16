@@ -26,7 +26,7 @@ public class KillBorder : MonoBehaviour
         }
     }
 
-    IEnumerator Respawn()
+    IEnumerator Respawn() // Respawns the player and freezes their movement to allow readjustment and prevent clipping
     {
         Rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         Player.transform.position += new Vector3(-2, 5, 0);

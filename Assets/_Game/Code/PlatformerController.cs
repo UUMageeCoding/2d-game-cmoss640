@@ -60,17 +60,17 @@ public class PlatformerController : MonoBehaviour
         DamageValue.text = "$" + Score.ToString();
         if (Input.GetAxis("Horizontal") < 0 && isGrounded == true)
         {
-            Sprite.flipX = true;
+            Sprite.flipX = true; // Sprite flips for looking backwards
             animator.SetBool("IsWalking", true);
         }
         else if (Input.GetAxis("Horizontal") > 0 && isGrounded == true)
         {
-            Sprite.flipX = false;
-            animator.SetBool("IsWalking", true);
+            Sprite.flipX = false; // Sprite returns to normal for looking forwards
+            animator.SetBool("IsWalking", true); //  Plays walk cycle
         }
         else if (Input.GetAxis("Horizontal") == 0 && isGrounded == true)
         {
-            animator.SetBool("IsWalking", false);
+            animator.SetBool("IsWalking", false); // Returns to idle
         }
     }
     

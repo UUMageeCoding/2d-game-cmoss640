@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class ThrowingWeapons : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Reference to the bullet prefab
-    public Transform firePoint;   // Reference to the fire point
-    public float bulletSpeed = 20f; // Speed of the bullet
+    public GameObject bulletPrefab; // Reference to the hammer prefab
+    public Transform firePoint;   // Reference to the throwpoint
+    public float bulletSpeed = 20f; // Speed of the hammer
     [SerializeField] GameObject AimIndicator;
     [SerializeField] TextMeshProUGUI HammerCountUI;
     public static int HammerCount = 30;
@@ -13,7 +13,7 @@ public class ThrowingWeapons : MonoBehaviour
 
     private void Awake()
     {
-        HammerCountUI.text = "x" + HammerCount.ToString();
+        HammerCountUI.text = "x" + HammerCount.ToString(); // Update the amount of held hammers on the UI
     }
 
     void Update()
@@ -30,14 +30,14 @@ public class ThrowingWeapons : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Input.GetMouseButton(1)) // Throw weapon
         {
-            if  (HammerCount >= 1)
+            if  (HammerCount >= 1) //  Prevents throwing hammers if the player has none
             {
                 Shoot();
                 HammerCount -= 1;
             }
         }
 
-        HammerCountUI.text = "x" + HammerCount.ToString();
+        HammerCountUI.text = "x" + HammerCount.ToString(); // Update the amount of held hammers on the UI
     }
 
     void Aim()
@@ -49,22 +49,22 @@ public class ThrowingWeapons : MonoBehaviour
         Vector3 direction = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Rotate the gun to face the mouse position
+        // Rotate the throw indicator to face the mouse position
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
     void Shoot()
     {
-        // Instantiate the bullet at the fire point
+        // Hammer spawns at throwpoint
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-        // Calculate the shoot direction from the fire point to the mouse position
+        // Calculate the throw direction from the throwpoint to the mouse position
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0; // Ignore the Z-axis
         Vector2 shootDirection = (mousePosition - firePoint.position).normalized;
 
-        // Set bullet velocity in the direction of the mouse position
+        // Hammer throw speed
         rb.linearVelocity = shootDirection * bulletSpeed;
 
         

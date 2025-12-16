@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour
     {
         if (StormTimer > 0 && TimerRunning == true)
         {
-            StormTimer -= Time.deltaTime;
+            StormTimer -= Time.deltaTime; // Timer goes down
             TimerLabel.text = StormTimer.ToString("F2");
 
         }
@@ -37,7 +37,7 @@ public class Timer : MonoBehaviour
         else if (StormTimer <= 0 && TimerRunning == true)
         {
             TimerRunning = false;
-            GameoverScreen.SetActive(true);
+            GameoverScreen.SetActive(true); // Ends the game on timer runout.
         }
 
     } }

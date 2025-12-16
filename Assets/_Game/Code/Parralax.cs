@@ -5,10 +5,10 @@ namespace _Scripts
 {
     public class ParallaxEffect : MonoBehaviour
     {
-        private float _startingPos, //This is the starting position of the sprites.
-            _lengthOfSprite; //This is the length of the sprites.
-        public float AmountOfParallax; //This is amount of parallax scroll. 
-        public Camera MainCamera; //Reference of the camera.
+        private float _startingPos, // Sprites original position
+            _lengthOfSprite; // The length of the sprite
+        public float AmountOfParallax; // The parralax speed
+        public Camera MainCamera;
 
 
 

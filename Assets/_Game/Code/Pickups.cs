@@ -16,7 +16,7 @@ public class Pickups : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) // Gives bonus hammers for pickup
     {
         if (collision.CompareTag("Player"))
         {
