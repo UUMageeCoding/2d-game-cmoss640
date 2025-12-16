@@ -12,6 +12,7 @@ public class PlatformerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TextMeshProUGUI DamageValue;
+    [SerializeField] private SpriteRenderer Sprite;
     
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -57,6 +58,20 @@ public class PlatformerController : MonoBehaviour
         }
 
         DamageValue.text = "$" + Score.ToString();
+        if (Input.GetAxis("Horizontal") < 0 && isGrounded == true)
+        {
+            Sprite.flipX = true;
+            animator.SetBool("IsWalking", true);
+        }
+        else if (Input.GetAxis("Horizontal") > 0 && isGrounded == true)
+        {
+            Sprite.flipX = false;
+            animator.SetBool("IsWalking", true);
+        }
+        else if (Input.GetAxis("Horizontal") == 0 && isGrounded == true)
+        {
+            animator.SetBool("IsWalking", false);
+        }
     }
     
     void FixedUpdate()

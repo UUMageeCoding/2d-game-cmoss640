@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     public bool TimerRunning = false;
     public int LightningNum;
     public Animator Lightning;
+    [SerializeField] GameObject GameoverScreen;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,7 +37,7 @@ public class Timer : MonoBehaviour
         else if (StormTimer <= 0 && TimerRunning == true)
         {
             TimerRunning = false;
-            Debug.Log("TIME UP!!!!!!!");
+            GameoverScreen.SetActive(true);
         }
 
     } }

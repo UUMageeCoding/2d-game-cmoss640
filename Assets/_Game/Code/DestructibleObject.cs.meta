@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: e677251b586065844a46e8f2139b830d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HealthNumber: {instanceID: 0}
+  - DestroyParticle: {instanceID: 0}
+  - JuggleBonusText: {instanceID: 0}
+  - SoundEffect: {instanceID: 0}
+  - DestructionSound: {instanceID: 0}
+  - Pickup: {fileID: 13578134716371199, guid: 4330ed1ab948a5e44ae4659124e30c32, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Destructible
   - Ground
+  - Throwpoint
   layers:
   - Default
   - TransparentFX

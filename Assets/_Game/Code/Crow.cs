@@ -6,6 +6,7 @@ public class Crow : MonoBehaviour
     Animator anim;
     [SerializeField] private AudioClip WingFlap;
     [SerializeField] private AudioClip Caw;
+    [SerializeField] private GameObject Storm;
 
     void Start()
     {
@@ -13,17 +14,12 @@ public class Crow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
 
     void OnTriggerEnter2D(Collider2D Collider)
     {
         anim.SetTrigger("Startled");
         Physics2D.IgnoreCollision(Collider, gameObject.GetComponent<CircleCollider2D>());
-
-
     }
 
 

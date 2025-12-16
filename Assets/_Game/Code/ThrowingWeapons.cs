@@ -1,14 +1,20 @@
 using TMPro;
 using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class ThrowingWeapons : MonoBehaviour
 {
     public GameObject bulletPrefab; // Reference to the bullet prefab
     public Transform firePoint;   // Reference to the fire point
     public float bulletSpeed = 20f; // Speed of the bullet
     [SerializeField] GameObject AimIndicator;
     [SerializeField] TextMeshProUGUI HammerCountUI;
-    private int HammerCount = 30;
+    public static int HammerCount = 30;
+
+
+    private void Awake()
+    {
+        HammerCountUI.text = "x" + HammerCount.ToString();
+    }
 
     void Update()
     {
@@ -28,9 +34,10 @@ public class GunController : MonoBehaviour
             {
                 Shoot();
                 HammerCount -= 1;
-                HammerCountUI.text = "x" + HammerCount.ToString();
             }
         }
+
+        HammerCountUI.text = "x" + HammerCount.ToString();
     }
 
     void Aim()

@@ -10,15 +10,18 @@ public class DestructibleObject : MonoBehaviour
 
     public int MaxObjectHealth;
     public int CurrentObjectHealth;
+    public int Reward;
     [SerializeField] private TextMeshPro HealthNumber;
     [SerializeField] GameObject DestroyParticle;
     [SerializeField] GameObject JuggleBonusText;
     [SerializeField] AudioSource SoundEffect;
-    [SerializeField] AudioClip Clip;
+    [SerializeField] GameObject DestructionSound;
+    [SerializeField] GameObject Pickup;
     private Rigidbody2D rb;
     private Animator anim;
     private bool JuggleBonus = false;
     private int JuggleCounter = 4;
+    private int PickupChance;
 
     
 
@@ -52,8 +55,8 @@ public class DestructibleObject : MonoBehaviour
 
             if (JuggleBonus == true)
             {
-                Debug.Log("Juggle");
                 Instantiate(JuggleBonusText, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                Destroy(JuggleBonusText, 2);
                 PlatformerController.Score += 2;
                 Debug.Log(PlatformerController.Score);
                 JuggleCounter -= 1;
@@ -72,10 +75,15 @@ public class DestructibleObject : MonoBehaviour
     void Explode()
         {
             Instantiate(DestroyParticle, transform.position, transform.rotation);
-            PlatformerController.Score += 5;
+            PlatformerController.Score += Reward;
             Destroy(gameObject);
-            SoundEffect.clip = Clip;
-            SoundEffect.Play();
+            Instantiate(DestructionSound, transform.position, transform.rotation);
+
+            PickupChance = Random.Range(1, 2);
+            if (PickupChance == 1)
+            {
+                Instantiate(Pickup, transform.position, transform.rotation);
+            }
         }
     }
 }
